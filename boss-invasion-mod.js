@@ -26,7 +26,17 @@ this.options = {
 
 count = 0
 
+spawn = function(ship) {
+  return ship && ship.set({x: 0, y: 75})
+}
+
 this.tick = function(game) {
+  for (let ship of game.ships) {
+    if (!ship.custom.joined) {
+      spawn(ship)
+      ship.custom.joined = true
+    }
+  }
   if (game.step % 1200 === 0) {
     if (count < 2) {
       game.addAlien(aliens[0])
@@ -35,5 +45,12 @@ this.tick = function(game) {
       game.addAlien(aliens[1])
       count = 0
     }
+  }
+}
+
+this.event = function(game, event) {
+  switch (event.name) {
+    case "ship_spawned":
+      spawn(event.ship)
   }
 }
