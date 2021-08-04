@@ -15,8 +15,7 @@ this.options = {
   starting_ship: 502,
   starting_ship_maxed: true,
   max_level: 5,
-  lives: 0,
-  root_mode: "survival",
+  root_mode: undefined,
   map_size: 80,
   weapons_store: false,
   custom_map: [],
@@ -27,7 +26,7 @@ this.options = {
 count = 0
 
 spawn = function(ship) {
-  return ship && ship.set({x: 0, y: 75})
+  return ship && ship.set({x: 0, y: 75, stats: 55555555})
 }
 
 this.tick = function(game) {
@@ -48,9 +47,10 @@ this.tick = function(game) {
   }
 }
 
-this.event = function(game, event) {
+this.event = function(event, game) {
   switch (event.name) {
     case "ship_spawned":
       spawn(event.ship)
+      break
   }
 }
