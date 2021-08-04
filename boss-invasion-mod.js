@@ -1,4 +1,4 @@
-aliens = [
+const aliens = [
   {
     code: 10,
     level: 3,
@@ -23,9 +23,9 @@ this.options = {
   max_players: 3
 };
 
-count = 0
+let count = 0
 
-spawn = function(ship) {
+const spawn = function(ship) {
   return ship && ship.set({x: 0, y: 75, stats: 55555555})
 }
 
